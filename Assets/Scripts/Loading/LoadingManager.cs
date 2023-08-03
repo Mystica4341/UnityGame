@@ -15,7 +15,6 @@ public class LoadingManager : MonoBehaviour
     private void CompleteLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
     }
 
 }
