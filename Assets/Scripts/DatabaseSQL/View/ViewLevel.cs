@@ -4,6 +4,7 @@ using System.Text;
 using System;
 using System.Data;
 using Mono.Data.Sqlite;
+using UnityEngine.SceneManagement;
 
 public class ViewLevel : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class ViewLevel : MonoBehaviour
     {
         Checked();
     }
-    public void Checked() {
+    public void Checked()
+    {
         using (var connection = new SqliteConnection(db_string))
         {
             var levelHandler = new LevelHandler();
@@ -32,6 +34,6 @@ public class ViewLevel : MonoBehaviour
             }
             connection.Close();
         }
+        Destroy(levelNextText);
     }
-
 }
