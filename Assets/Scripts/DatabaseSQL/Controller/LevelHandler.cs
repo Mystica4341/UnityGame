@@ -6,7 +6,7 @@ public class LevelHandler : MonoBehaviour
 {
     private string db_string = "Data Source = GameObject.db; FailIfMissing = false";
     IDataReader reader;
-    public void checkLevel(int level, GameObject levelText1, GameObject levelText2, GameObject levelText3, GameObject levelText4)
+    public void checkLevel(int level, GameObject levelText1, GameObject levelText2, GameObject levelText3)
     {
         using (var connection = new SqliteConnection(db_string))
         {
@@ -24,7 +24,6 @@ public class LevelHandler : MonoBehaviour
                             levelText1.SetActive(false);
                             levelText2.SetActive(false);
                             levelText3.SetActive(false);
-                            levelText4.SetActive(false);
                         }
                     }
                 }
@@ -38,7 +37,6 @@ public class LevelHandler : MonoBehaviour
                         {
                             levelText2.SetActive(false);
                             levelText3.SetActive(false);
-                            levelText4.SetActive(false);
                         }
                     }
                 }
@@ -51,19 +49,6 @@ public class LevelHandler : MonoBehaviour
                         if (reader.GetString(0) == "Uncomplete")
                         {
                             levelText3.SetActive(false);
-                            levelText4.SetActive(false);
-                        }
-                    }
-                }
-                if (level == 4)
-                {
-                    command.CommandText = "SELECT status FROM Levels WHERE Level = " + level;
-                    reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        if (reader.GetString(0) == "Uncomplete")
-                        {
-                            levelText4.SetActive(false);
                         }
                     }
                 }

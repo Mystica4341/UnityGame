@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Firetrap : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
 
     [Header("Firetrap Timers")]
     [SerializeField] private float activationDelay;

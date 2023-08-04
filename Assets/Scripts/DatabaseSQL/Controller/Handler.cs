@@ -15,7 +15,6 @@ public class Handler : MonoBehaviour
         insertDataLevels(2, "Uncomplete");
         insertDataLevels(3, "Uncomplete");
         insertDataLevels(4, "Uncomplete");
-        insertDataLevels(5, "Uncomplete");
     }
     public void createDB()
     {
@@ -24,9 +23,9 @@ public class Handler : MonoBehaviour
             connection.Open();
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "CREATE TABLE IF NOT EXISTS Player (UID char(20) UNIQUE, FruitNums int);";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Player (UID varchar(20) UNIQUE, FruitNums int);";
                 command.ExecuteNonQuery();
-            };
+            }
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "CREATE TABLE IF NOT EXISTS Levels (Level int UNIQUE, status varchar(10));";
