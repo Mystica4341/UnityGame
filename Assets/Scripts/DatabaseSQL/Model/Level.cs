@@ -15,18 +15,14 @@ class Level
         get { return status; }
         set { status = value; }
     }
-    
-    private int star;
-    public int Star
+    public Level()
     {
-        get { return star; }
-        set { star = value; }
+
     }
 
-    public Level(int level, string status, int star)
+    public Level(int level, string status)
     {
         this.NumsLevel = level;
         this.Status = status;
-        this.Star = star;
     }
 }

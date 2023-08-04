@@ -19,4 +19,8 @@ public class ItemCollect : MonoBehaviour
             fruitText.text = "Fruits: " + fruit;
         }
     }
+    public int returnFruit()
+    {
+        return fruit;
+    }
 }

@@ -11,11 +11,11 @@ public class Handler : MonoBehaviour
     {
         createDB();
         insertDataPlayer("Player01025", 0);
-        insertDataLevels(1, "Uncomplete", 0);
-        insertDataLevels(2, "Uncomplete", 0);
-        insertDataLevels(3, "Uncomplete", 0);
-        insertDataLevels(4, "Uncomplete", 0);
-        insertDataLevels(5, "Uncomplete", 0);
+        insertDataLevels(1, "Uncomplete");
+        insertDataLevels(2, "Uncomplete");
+        insertDataLevels(3, "Uncomplete");
+        insertDataLevels(4, "Uncomplete");
+        insertDataLevels(5, "Uncomplete");
     }
     public void createDB()
     {
@@ -29,7 +29,7 @@ public class Handler : MonoBehaviour
             };
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "CREATE TABLE IF NOT EXISTS Levels (Levels int UNIQUE, status varchar(10), star int DEFAULT '0');";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Levels (Level int UNIQUE, status varchar(10));";
                 command.ExecuteNonQuery();
             }
             connection.Close();
@@ -42,20 +42,20 @@ public class Handler : MonoBehaviour
             connection.Open();
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "INSERT OR IGNORE INTO Player (UID, FruitNums) VALUES ('" + uid + "','" + fruitNums + "')";
+                command.CommandText = "INSERT OR IGNORE INTO Player (UID, FruitNums) VALUES ('" + uid + "'," + fruitNums + ")";
                 command.ExecuteNonQuery();
             }
             connection.Close();
         }
     }
-    public void insertDataLevels(int level, string status, int star)
+    public void insertDataLevels(int level, string status)
     {
         using (var connection = new SqliteConnection(db_string))
         {
             connection.Open();
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "INSERT OR IGNORE INTO Levels (levels, status, star) VALUES ('" + level + "','" + status + "','" + star + "')";
+                command.CommandText = "INSERT OR IGNORE INTO Levels (Level, status) VALUES (" + level + ",'" + status + "')";
                 command.ExecuteNonQuery();
             }
             connection.Close();

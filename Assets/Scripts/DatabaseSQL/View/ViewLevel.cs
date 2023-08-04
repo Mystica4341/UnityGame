@@ -8,32 +8,21 @@ using UnityEngine.SceneManagement;
 
 public class ViewLevel : MonoBehaviour
 {
-    private Level level;
-    public GameObject levelNextText;
+    public GameObject levelText1, levelText2, levelText3, levelText4;
+    public int level;
     private string db_string = "Data Source = GameObject.db; FailIfMissing = false";
     IDataReader reader;
     void Start()
     {
+        levelText1.SetActive(true);
+        levelText2.SetActive(true);
+        levelText3.SetActive(true);
+        levelText4.SetActive(true);
         Checked();
     }
     public void Checked()
     {
-        using (var connection = new SqliteConnection(db_string))
-        {
-            var levelHandler = new LevelHandler();
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = "SELECT Levels FROM Levels";
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    int levels = Convert.ToInt32(reader.GetValue(0));
-                    levelHandler.checkLevel(levels, levelNextText);
-                }
-            }
-            connection.Close();
-        }
-        Destroy(levelNextText);
+        LevelHandler levelHandler = new LevelHandler();
+        levelHandler.checkLevel(level,levelText1, levelText2, levelText3, levelText4);
     }
 }
