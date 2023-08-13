@@ -29,7 +29,7 @@ public class PlayerHandler : MonoBehaviour
             connection.Open();
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "UPDATE player SET FruitNums = "+fruit+" WHERE uid = 'Player01025'";
+                command.CommandText = "UPDATE player SET FruitNums = FruitNums + " + fruit+" WHERE uid = 'Player01025'";
                 command.ExecuteNonQuery();
             }
             connection.Close();
